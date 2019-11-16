@@ -19,7 +19,7 @@ const CustomLink = ({ to, icon, label, activeOnlyWhenExact }) => {
     path: to,
     exact: activeOnlyWhenExact
   });
-  const src = '/icons/' + (match ? 'active/' : '') + icon;
+  const src = 'icons/' + (match ? 'active/' : '') + icon;
 
   return (
     <div className={match ? "active" : ""}>
