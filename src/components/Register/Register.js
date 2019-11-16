@@ -1,11 +1,13 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
+import {withRouter, Link} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as yup from "yup";
 
 import {RegisterWrapper} from "./styled";
 import {FormGroup, FormTitle, SubmitButton} from "../Login/styled";
 import CustomSelect from "../Inputs/CustomSelect";
+import AuthService from "../../services/Auth";
+import Auth from "../../utils/auth";
 
 const genderOptions = [
   {value: 0, label: "Male"},
@@ -13,7 +15,7 @@ const genderOptions = [
 ];
 
 const validationSchema = yup.object().shape({
-  fullName: yup
+  name: yup
     .string()
     .required('Enter a full name'),
   email: yup
@@ -33,12 +35,21 @@ const validationSchema = yup.object().shape({
     .required('Enter an age'),
 });
 
-const Register = () => {
-  const onSubmitForm = (values, actions) => {
-    console.log(values)
-    setTimeout(() => {
+const Register = (props) => {
+  const [errorMsg, setErrorMsg] = useState('');
+  const onSubmitForm = async (values, actions) => {
+    try {
+      const { data } = await AuthService.register(values);
+      if (data && data.auth && data.token) {
+        Auth.setAccessToken(data.token);
+        // redirect to home page
+        props.history.push('/profile');
+      }
       actions.setSubmitting(false);
-    }, 1000);
+    } catch (e) {
+      setErrorMsg('Login failed');
+      actions.setSubmitting(false);
+    }
   };
 
   return (
@@ -46,19 +57,19 @@ const Register = () => {
       <FormTitle>Register</FormTitle>
       <p>Already have an account? <Link to="/login">LogIn</Link></p>
       <Formik
-        initialValues={{fullName: '', email: '', password: '', gender: '', age: ''}}
+        initialValues={{name: '', email: '', password: '', gender: '', age: ''}}
         onSubmit={onSubmitForm}
         validationSchema={validationSchema}
       >
         {({touched, errors, isSubmitting}) => (
           <Form>
             <FormGroup>
-              <label htmlFor="fullName">Full Name</label>
-              <Field id="fullName" type="text" name="fullName" placeholder="First and last name"
+              <label htmlFor="name">Full Name</label>
+              <Field id="name" type="text" name="name" placeholder="First and last name"
                      className={`form-control ${
-                       touched.fullName && errors.fullName ? "is-invalid" : ""
+                       touched.name && errors.name ? "is-invalid" : ""
                        }`}/>
-              <ErrorMessage component="div" name="fullName" className="error"/>
+              <ErrorMessage component="div" name="name" className="error"/>
             </FormGroup>
             <FormGroup>
               <label htmlFor="email">Email address</label>
@@ -89,7 +100,7 @@ const Register = () => {
                        }`}/>
               <ErrorMessage component="div" name="age" className="error"/>
             </FormGroup>
-
+            {errorMsg && <div className="error">{errorMsg}</div>}
             <SubmitButton type="submit"
                           disabled={isSubmitting}>{isSubmitting ? 'Please wait...' : 'Register'}</SubmitButton>
           </Form>
@@ -99,4 +110,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);

@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
 });
 
 const LoginForm = (props) => {
-  const [loginError, setLoginError] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const onSubmitForm = async (values, actions) => {
     try {
       const { data } = await AuthService.login(values);
@@ -29,7 +29,7 @@ const LoginForm = (props) => {
       }
       actions.setSubmitting(false);
     } catch (e) {
-      setLoginError('Login failed');
+      setErrorMsg('Login failed');
       actions.setSubmitting(false);
     }
   };
@@ -62,7 +62,7 @@ const LoginForm = (props) => {
               <ErrorMessage component="div" name="password" className="error"/>
             </FormGroup>
             <span className="forget-pwd">Forget Password</span>
-            {loginError && <div className="error">{loginError}</div>}
+            {errorMsg && <div className="error">{errorMsg}</div>}
             <SubmitButton type="submit"
                           disabled={isSubmitting}>{isSubmitting ? 'Please wait...' : 'Login'}</SubmitButton>
           </Form>
