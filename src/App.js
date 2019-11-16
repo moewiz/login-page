@@ -1,23 +1,35 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
-function App() {
+// Import Layouts
+import MainLayout from "./components/Layouts/MainLayout";
+
+// Import Pages
+import Login from './components/Login';
+import Register from './components/Register';
+import Home from "./components/Home";
+
+const PrivateRoute = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainLayout>
+      {props.children}
+    </MainLayout>
+  )
+};
+
+const NotFound = () => <Redirect to="/"/>;
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/login" name="Login" component={Login}/>
+        <Route path="/register" name="Register" component={Register}/>
+        <PrivateRoute exact path="/" name="Home" component={Home}/>
+        <Route component={NotFound}/>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
