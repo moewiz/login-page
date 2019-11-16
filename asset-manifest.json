@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/login-page/static/css/main.c304409f.chunk.css",
+    "main.js": "/login-page/static/js/main.c595107a.chunk.js",
+    "main.js.map": "/login-page/static/js/main.c595107a.chunk.js.map",
+    "runtime-main.js": "/login-page/static/js/runtime-main.2a8e31f4.js",
+    "runtime-main.js.map": "/login-page/static/js/runtime-main.2a8e31f4.js.map",
+    "static/js/2.f0859a52.chunk.js": "/login-page/static/js/2.f0859a52.chunk.js",
+    "static/js/2.f0859a52.chunk.js.map": "/login-page/static/js/2.f0859a52.chunk.js.map",
+    "index.html": "/login-page/index.html",
+    "precache-manifest.4e8ceb80f2d0589b68866812f0065c62.js": "/login-page/precache-manifest.4e8ceb80f2d0589b68866812f0065c62.js",
+    "service-worker.js": "/login-page/service-worker.js",
+    "static/css/main.c304409f.chunk.css.map": "/login-page/static/css/main.c304409f.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2a8e31f4.js",
+    "static/js/2.f0859a52.chunk.js",
+    "static/css/main.c304409f.chunk.css",
+    "static/js/main.c595107a.chunk.js"
+  ]
+}
