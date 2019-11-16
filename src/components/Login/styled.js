@@ -24,6 +24,7 @@ export const SubmitButton = styled.button`
   border-radius: 4px;
   min-width: 200px;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 export const FormGroup = styled.div`
@@ -48,5 +49,29 @@ export const FormGroup = styled.div`
   .error {
     color: #d92026;
     font-size: 12px;
+  }
+  
+  .custom-select-container{
+    .react-select {
+      &__control {
+        border: none;
+        border-bottom: 2px solid #eee;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 13px;
+        &:hover, &--is-focused {
+          box-shadow: none;
+        }
+      }
+      &__value-container {
+        padding-left: 0px;
+      }
+      &__indicator {
+        padding-right: 0px;
+        &-separator {
+          display: none;
+        }
+      }
+    }
   }
 `;

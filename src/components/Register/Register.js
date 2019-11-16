@@ -5,6 +5,12 @@ import * as yup from "yup";
 
 import {RegisterWrapper} from "./styled";
 import {FormGroup, FormTitle, SubmitButton} from "../Login/styled";
+import CustomSelect from "../Inputs/CustomSelect";
+
+const genderOptions = [
+  {value: 0, label: "Male"},
+  {value: 1, label: "Female"},
+];
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -61,10 +67,7 @@ const Register = () => {
             </FormGroup>
             <FormGroup>
               <label htmlFor="gender">Gender</label>
-              <Field name="gender" component="select" placeholder="Select gender">
-                <option value={0}>Male</option>
-                <option value={1}>Female</option>
-              </Field>
+              <Field name="gender" component={CustomSelect} placeholder="Select gender" options={genderOptions}/>
               <ErrorMessage component="div" name="gender" className="error"/>
             </FormGroup>
             <FormGroup>
