@@ -1,14 +1,18 @@
 import React from 'react';
 
-import { MainLayoutWrapper, ContentLayout} from "./styled";
-import Sidebar from "../Sidebar";
+import {MainLayoutWrapper, ContentLayout, MainContentLayout} from "./styled";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const MainLayout = ({ children }) => {
   return (
     <MainLayoutWrapper>
-      <Sidebar />
+      <Header />
       <ContentLayout>
-        {children}
+        <Sidebar />
+        <MainContentLayout>
+          {children}
+        </MainContentLayout>
       </ContentLayout>
     </MainLayoutWrapper>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 
@@ -15,11 +15,13 @@ const validationSchema = yup.object().shape({
     .required('Enter a password'),
 });
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const onSubmitForm = (values, actions) => {
     console.log(values)
     setTimeout(() => {
       actions.setSubmitting(false);
+      // redirect to home page
+      props.history.push('/');
     }, 1000);
   };
 
@@ -60,4 +62,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
