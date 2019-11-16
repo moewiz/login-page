@@ -10,7 +10,7 @@ const sidebars = [
   {url: '/product', icon: 'product@2x.png', label: 'Products'},
   {url: '/my-request', icon: 'my-request@2x.png', label: 'My Request'},
   {url: '/order', icon: 'order@2x.png', label: 'Order History'},
-  {url: '/', icon: 'profile@2x.png', label: 'Profile'},
+  {url: '/profile', icon: 'profile@2x.png', label: 'Profile'},
   {url: '/setting', icon: 'setting@2x.png', label: 'Settings'},
 ];
 

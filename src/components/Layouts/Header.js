@@ -2,10 +2,11 @@ import React from 'react';
 import {withRouter} from "react-router-dom";
 
 import {HeaderWrapper} from "./styled";
+import Auth from "../../utils/auth";
 
 const Header = (props) => {
   const logout = () => {
-    // Auth.logout()
+    Auth.logout();
     props.history.push('/login');
   };
 

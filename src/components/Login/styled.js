@@ -8,6 +8,11 @@ export const LoginFormWrapper = styled.div`
     cursor: pointer;
     margin-bottom: 20px;
   }
+    
+  .error {
+    color: #d92026;
+    font-size: 12px;
+  }
 `;
 
 export const FormTitle = styled.h2`
@@ -44,11 +49,6 @@ export const FormGroup = styled.div`
     margin: 5px 0;
     color: #333;
     outline: none;
-  }
-  
-  .error {
-    color: #d92026;
-    font-size: 12px;
   }
   
   .custom-select-container{

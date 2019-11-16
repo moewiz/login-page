@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {withRouter, Link} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 
 import {LoginFormWrapper, FormTitle, SubmitButton, FormGroup} from "./styled";
+import AuthService from "../../services/Auth";
+import Auth from "../../utils/auth";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -16,13 +18,20 @@ const validationSchema = yup.object().shape({
 });
 
 const LoginForm = (props) => {
-  const onSubmitForm = (values, actions) => {
-    console.log(values)
-    setTimeout(() => {
+  const [loginError, setLoginError] = useState('');
+  const onSubmitForm = async (values, actions) => {
+    try {
+      const { data } = await AuthService.login(values);
+      if (data && data.auth && data.token) {
+        Auth.setAccessToken(data.token);
+        // redirect to home page
+        props.history.push('/profile');
+      }
       actions.setSubmitting(false);
-      // redirect to home page
-      props.history.push('/');
-    }, 1000);
+    } catch (e) {
+      setLoginError('Login failed');
+      actions.setSubmitting(false);
+    }
   };
 
   return (
@@ -53,6 +62,7 @@ const LoginForm = (props) => {
               <ErrorMessage component="div" name="password" className="error"/>
             </FormGroup>
             <span className="forget-pwd">Forget Password</span>
+            {loginError && <div className="error">{loginError}</div>}
             <SubmitButton type="submit"
                           disabled={isSubmitting}>{isSubmitting ? 'Please wait...' : 'Login'}</SubmitButton>
           </Form>

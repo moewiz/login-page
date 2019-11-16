@@ -3,15 +3,18 @@ import React from 'react';
 import {MainLayoutWrapper, ContentLayout, MainContentLayout} from "./styled";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import {HomeWrapper} from "../Home/styled";
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({children}) => {
   return (
     <MainLayoutWrapper>
-      <Header />
+      <Header/>
       <ContentLayout>
-        <Sidebar />
+        <Sidebar/>
         <MainContentLayout>
-          {children}
+          <HomeWrapper>
+            {children}
+          </HomeWrapper>
         </MainContentLayout>
       </ContentLayout>
     </MainLayoutWrapper>

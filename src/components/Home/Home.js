@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {HomeWrapper} from "./styled";
-import Profile from "./Profile";
+import Dashboard from "./Dashboard";
 
 const Home = () => {
   return (
-    <HomeWrapper>
-      <Profile />
-    </HomeWrapper>
+    <Dashboard />
   );
 };
 
