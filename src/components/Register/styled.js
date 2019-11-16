@@ -1,3 +1,5 @@
 import styled from 'styled-components';
 
-export const RegisterWrapper = styled.div``;
+import {LoginFormWrapper} from "../Login/styled";
+
+export const RegisterWrapper = styled(LoginFormWrapper)``;
