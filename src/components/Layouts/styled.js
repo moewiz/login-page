@@ -27,7 +27,7 @@ export const LoginLayoutWrapper = styled.div`
 
 export const BackgroundImage = styled.div`
   flex: 70%;
-  background-image: url(/img/login-bg.jpg);
+  background-image: ${(props) => props.isRegisterPage ? 'url(/img/register-bg.jpg)' : 'url(/img/login-bg.jpg)'};
   background-color: #f5f5f5;
   background-repeat: no-repeat;
   background-size: cover;

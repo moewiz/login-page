@@ -12,8 +12,10 @@ import Home from "./components/Home";
 
 const PublicRoute = (props) => {
   const {component: Component, ...rest} = props;
+  const isRegisterPage = props.name === 'Register';
+
   return (
-    <LoginLayout>
+    <LoginLayout isRegisterPage={isRegisterPage}>
       <Component {...rest} />
     </LoginLayout>
   );
