@@ -1,11 +1,12 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 
 import {HeaderWrapper} from "./styled";
 
-const Header = () => {
+const Header = (props) => {
   const logout = () => {
     // Auth.logout()
-    console.log("Auth.logout()")
+    props.history.push('/login');
   };
 
   return (
@@ -19,4 +20,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

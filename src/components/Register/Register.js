@@ -13,6 +13,9 @@ const genderOptions = [
 ];
 
 const validationSchema = yup.object().shape({
+  fullName: yup
+    .string()
+    .required('Enter a full name'),
   email: yup
     .string()
     .email('Enter an email')
@@ -20,6 +23,14 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required('Enter a password'),
+  gender: yup
+    .string()
+    .required('Select a gender'),
+  age: yup
+    .number()
+    .min(18, 'Enter an age between 18 and 60')
+    .max(60, 'Enter an age between 18 and 60')
+    .required('Enter an age'),
 });
 
 const Register = () => {
@@ -43,7 +54,7 @@ const Register = () => {
           <Form>
             <FormGroup>
               <label htmlFor="fullName">Full Name</label>
-              <Field id="fullName" type="fullName" name="fullName" placeholder="First and last name"
+              <Field id="fullName" type="text" name="fullName" placeholder="First and last name"
                      className={`form-control ${
                        touched.fullName && errors.fullName ? "is-invalid" : ""
                        }`}/>
