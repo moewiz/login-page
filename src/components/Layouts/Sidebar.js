@@ -3,7 +3,7 @@ import {Link, useRouteMatch} from "react-router-dom";
 
 import {SidebarWrapper} from "./styled";
 
-const sidebars = [
+export const sidebars = [
   {url: '/dashboard', icon: 'dashboard@2x.png', label: 'Dashboard'},
   {url: '/incoming-enq', icon: 'incoming-enq@2x.png', label: 'Incoming Enquiries'},
   {url: '/incoming-qout', icon: 'incoming-qout@2x.png', label: 'Incoming Quotations'},

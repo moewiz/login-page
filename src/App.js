@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import Auth from "./utils/auth";
+import {sidebars} from "./components/Layouts/Sidebar";
 
 // Import Layouts
 import MainLayout from "./components/Layouts/MainLayout";
@@ -10,8 +11,6 @@ import LoginLayout from "./components/Layouts/LoginLayout";
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from "./components/Home";
-import Profile from "./components/Home/Profile";
-import Dashboard from "./components/Home/Dashboard";
 
 const PublicRoute = (props) => {
   const {component: Component, ...rest} = props;
@@ -42,7 +41,7 @@ const PrivateRoute = (props) => {
   return <Redirect to="/login" />;
 };
 
-const NotFound = () => <Redirect to="/"/>;
+const NotFound = () => <Redirect to="/dashboard"/>;
 
 const App = () => {
   return (
@@ -50,8 +49,9 @@ const App = () => {
       <Switch>
         <PublicRoute path="/login" name="Login" component={Login}/>
         <PublicRoute path="/register" name="Register" component={Register}/>
-        <PrivateRoute path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/profile" component={Profile} />
+        {sidebars.map((sidebar, index) => (
+          <PrivateRoute path={sidebar.url} name={sidebar.label} component={Home} key={index} />
+        ))}
         <PrivateRoute exact path="/" name="Home" component={Home}/>
         <Route component={NotFound}/>
       </Switch>

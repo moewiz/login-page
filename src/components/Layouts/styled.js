@@ -12,6 +12,10 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   padding: 15px;
   border-bottom: 1px solid #f2f2f2;
+  
+  .logo {
+    cursor: pointer;
+  }
 
   .logout-block {
     display: flex;
