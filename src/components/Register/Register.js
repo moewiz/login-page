@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {LoginLayoutWrapper} from "../Layouts/styled";
+import {RegisterWrapper} from "./styled";
 
 const Register = () => {
   return (
-    <LoginLayoutWrapper>
+    <RegisterWrapper>
       Register
-    </LoginLayoutWrapper>
+    </RegisterWrapper>
   );
 };
 

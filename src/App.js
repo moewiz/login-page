@@ -3,16 +3,27 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 
 // Import Layouts
 import MainLayout from "./components/Layouts/MainLayout";
+import LoginLayout from "./components/Layouts/LoginLayout";
 
 // Import Pages
 import Login from './components/Login';
 import Register from './components/Register';
 import Home from "./components/Home";
 
+const PublicRoute = (props) => {
+  const {component: Component, ...rest} = props;
+  return (
+    <LoginLayout>
+      <Component {...rest} />
+    </LoginLayout>
+  );
+};
+
 const PrivateRoute = (props) => {
+  const {component: Component, ...rest} = props;
   return (
     <MainLayout>
-      {props.children}
+      <Component {...rest} />
     </MainLayout>
   )
 };
@@ -23,8 +34,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/login" name="Login" component={Login}/>
-        <Route path="/register" name="Register" component={Register}/>
+        <PublicRoute path="/login" name="Login" component={Login}/>
+        <PublicRoute path="/register" name="Register" component={Register}/>
         <PrivateRoute exact path="/" name="Home" component={Home}/>
         <Route component={NotFound}/>
       </Switch>

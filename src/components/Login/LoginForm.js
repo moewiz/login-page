@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 
-import {LoginFormWrapper, FormTitle} from "./styled";
+import {LoginFormWrapper, FormTitle, SubmitButton, FormGroup} from "./styled";
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -25,37 +25,37 @@ const LoginForm = () => {
 
   return (
     <LoginFormWrapper>
-      <img src="/img/logo@2x.jpg" alt="logo" width={200}/>
-      <div>
-        <FormTitle>Login</FormTitle>
-        <p>Don't have an account yet? <Link to="/register">Sign Up</Link></p>
-        <Formik
-          initialValues={{email: '', password: ''}}
-          onSubmit={onSubmitForm}
-          validationSchema={validationSchema}
-        >
-          {({touched, errors, isSubmitting}) => (
-            <Form>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Field type="email" name="email" placehodler="Enter your email address" className={`form-control ${
-                  touched.email && errors.email ? "is-invalid" : ""
-                  }`}/>
-                <ErrorMessage component="div" name="email" className="error" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field type="password" name="password" placehodler="Enter your password" className={`form-control ${
-                  touched.password && errors.password ? "is-invalid" : ""
-                  }`}/>
-                <ErrorMessage component="div" name="password" className="error" />
-              </div>
-              <p className="forget-pwd">Forget Password</p>
-              <button type="submit">Login</button>
-            </Form>
-          )}
-        </Formik>
-      </div>
+      <FormTitle>Login</FormTitle>
+      <p>Don't have an account yet? <Link to="/register">Sign Up</Link></p>
+      <Formik
+        initialValues={{email: '', password: ''}}
+        onSubmit={onSubmitForm}
+        validationSchema={validationSchema}
+      >
+        {({touched, errors, isSubmitting}) => (
+          <Form>
+            <FormGroup>
+              <label htmlFor="email">Email</label>
+              <Field id="email" type="email" name="email" placeholder="Enter your email address"
+                     className={`form-control ${
+                       touched.email && errors.email ? "is-invalid" : ""
+                       }`}/>
+              <ErrorMessage component="div" name="email" className="error"/>
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="password">Password</label>
+              <Field id="password" type="password" name="password" placeholder="Enter your password"
+                     className={`form-control ${
+                       touched.password && errors.password ? "is-invalid" : ""
+                       }`}/>
+              <ErrorMessage component="div" name="password" className="error"/>
+            </FormGroup>
+            <span className="forget-pwd">Forget Password</span>
+            <SubmitButton type="submit"
+                          disabled={isSubmitting}>{isSubmitting ? 'Please wait...' : 'Login'}</SubmitButton>
+          </Form>
+        )}
+      </Formik>
     </LoginFormWrapper>
   );
 };
